@@ -1,9 +1,9 @@
+import Content from "./Content"
+
 function App() {
 
   return (
-    <>
-      <p className="text-8xl text-center">I am Nithin Rauj</p>
-    </>
+    <Content />
   )
 }
 
