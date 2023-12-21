@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import ConnectBar from "./ConnectBar";
 
 const Content = () => {
 
@@ -13,7 +14,6 @@ const Content = () => {
             switch (classList[0]) {
                 case 'header':
                 case 'subheader':
-                    console.log(`${classList[0]} intersecting`);
                     if (element.isIntersecting) {
                         element.target.classList.remove('blur')
                         element.target.classList.add('scale-125')
@@ -21,10 +21,8 @@ const Content = () => {
                     break;
                 case 'card':
                     if (element.isIntersecting) {
-                        console.log(`${classList[0]} intersecting`);
-                        element.target.classList.remove('-translate-x-full')
-                        element.target.classList.remove('translate-x-full')
-                        element.target.classList.add('translate-x-0')
+                        element.target.classList.remove('-translate-x-[150%]')
+                        element.target.classList.remove('translate-x-[150%]')
                     }
                     break;
             }
@@ -44,6 +42,7 @@ const Content = () => {
 
     return (
         <>
+            <ConnectBar />
             <div className="h-screen flex items-center justify-center">
                 <p className="text-7xl">Hey!</p>
             </div>
@@ -57,11 +56,11 @@ const Content = () => {
                 <div className="w-1/2">
                     <p className="transition duration-300 text-7xl">Where I&apos;ve Worked...</p><br />
 
-                    <div ref={job1Ref} className="card my-3 -translate-x-full transition duration-500 ease-in">
+                    <div ref={job1Ref} className="card my-3 -translate-x-[150%] transition duration-700 ease-in">
                         <p className="text-3xl">ActiveCampaign</p>
                         <p className="text-base font-thin">Software Engineer &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Jan 2024 - Present</p>
                         <p className="text-base font-thin">Software Engineering Intern&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;May 2023 - Aug 2023</p>
-                        <ul className="font-extralight text-sm list-disc mt-3">
+                        <ul className="w-5/6 text-justify font-extralight text-sm list-disc mt-3">
                             <li>
                                 Architected a scalable CI/CD pipeline hosted in GitLab automating and
                                 streamlining the deployment process for database DML changes in both
@@ -79,10 +78,10 @@ const Content = () => {
                         </ul>
                     </div>
 
-                    <div ref={job2Ref} className="card my-3 translate-x-full transition duration-700 ease-in">
+                    <div ref={job2Ref} className="card my-3 translate-x-[150%] transition duration-700 ease-in">
                         <p className="text-3xl">Animaker</p>
                         <p className="text-base font-thin">Software Engineer&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;May 2020 – April 2022</p>
-                        <ul className="font-extralight text-sm list-disc mt-3">
+                        <ul className="w-5/6 text-justify font-extralight text-sm list-disc mt-3">
                             <li>Collaborated with a 10 member team to build Vmaker suite of products and
                                 grew subscriber count from 0 to 100K in a span of 2 years.
                             </li>
