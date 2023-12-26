@@ -22,20 +22,13 @@ const Content = () => {
         elements.forEach((element) => {
             const classList = element.target.classList;
             switch (classList[0]) {
-                case 'header':
-                case 'subheader':
-                    if (element.isIntersecting) {
-                        element.target.classList.remove('blur')
-                        element.target.classList.add('scale-125')
-                    }
-                    break;
-                case 'card':
+                case 'transform-transition':
                     if (element.isIntersecting) {
                         element.target.classList.remove('-translate-x-[150%]')
                         element.target.classList.remove('translate-x-[150%]')
                     }
                     break;
-                case 'contact-me':
+                case 'height-transition':
                     if (element.isIntersecting) {
                         element.target.classList.remove('max-h-0')
                         element.target.classList.add('max-h-64')
@@ -73,19 +66,19 @@ const Content = () => {
         <>
             <ConnectBar />
             <div className="h-screen flex items-center justify-center">
-                <div className="text-7xl">Hey!</div>
+                <div ref={headerRef} className="height-transition text-7xl max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in">Hey!</div>
             </div>
             <div className="h-screen flex items-center justify-center">
-                <p ref={headerRef} className="header transition duration-300 text-7xl">I am Nithin Rauj</p>
-            </div>
-            <div className="h-screen flex items-center justify-center">
-                <p ref={subHeaderRef} className="header transition duration-300 text-7xl">I&apos;m a Software Engineer</p>
+                <div ref={subHeaderRef} className="height-transition text-7xl max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in delay-500">
+                    <p className="text-7xl">My name is Nithin Rauj.</p>
+                    <p className="text-7xl my-7">I build software for a living.</p>
+                </div>
             </div>
 
             <div className="h-screen flex flex-col items-center justify-center overflow-x-hidden my-5">
                 <div className="w-1/2">
                     <p className="transition duration-300 text-7xl text-center">Where I&apos;ve Worked...</p><br />
-                    <div ref={job1Ref} className="card -translate-x-[150%] transition duration-700 ease-in my-5">
+                    <div ref={job1Ref} className="transform-transition -translate-x-[150%] transition duration-700 ease-in my-5">
                         <p className="text-3xl">ActiveCampaign</p>
                         <div className="my-3">
                             <p className="text-base font-thin">Software Engineer &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Jan 2024 - Present</p>
@@ -109,7 +102,7 @@ const Content = () => {
                         </ul>
                     </div>
 
-                    <div ref={job2Ref} className="card translate-x-[150%] transition duration-700 ease-in my-5">
+                    <div ref={job2Ref} className="transform-transition translate-x-[150%] transition duration-700 ease-in my-5">
                         <p className="text-3xl">Animaker</p>
                         <div className="my-3">
                             <p className="text-base font-thin">Software Engineer&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;May 2020 – April 2022</p>
@@ -136,7 +129,7 @@ const Content = () => {
                 <div className="w-1/2">
                     <p className="transition duration-300 text-7xl text-center">What I&apos;ve Built...</p><br />
 
-                    <div ref={project1Ref} className="card my-5 -translate-x-[150%] transition duration-700 ease-in">
+                    <div ref={project1Ref} className="transform-transition my-5 -translate-x-[150%] transition duration-700 ease-in">
                         <div className="flex flex-row">
                             <p className="text-3xl">CollabSQL</p>
                             <Icon icon={linkSvg} alt={'link-icon'} className={'w-4 h-4 cursor-pointer mx-2'} url={PROJECT_URLS[0]} />
@@ -155,7 +148,7 @@ const Content = () => {
                         </div>
                     </div>
 
-                    <div ref={project2Ref} className="card my-5 translate-x-[150%] transition duration-700 ease-in">
+                    <div ref={project2Ref} className="transform-transition my-5 translate-x-[150%] transition duration-700 ease-in">
                         <div className="flex flex-row">
                             <p className="text-3xl">REST Client</p>
                             <Icon icon={linkSvg} alt={'link-icon'} className={'w-4 h-4 cursor-pointer mx-2'} url={PROJECT_URLS[1]} />
@@ -176,7 +169,7 @@ const Content = () => {
             </div>
 
             <div className="h-screen flex items-center justify-center overflow-x-hidden">
-                <div ref={contactSectionRef} className="contact-me w-1/2 max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in">
+                <div ref={contactSectionRef} className="height-transition w-1/2 max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in">
                     <p className="transition duration-300 text-7xl text-center">Contact Me</p><br />
                     <div className="flex flex-col justify-center items-center">
                         <p className='font-extralight'>Get in touch to discuss projects, collaborations, or just to say Hello!</p>
