@@ -3,10 +3,12 @@ import ConnectBar from "./ConnectBar";
 import Badge from "./Badge";
 import Icon from "./Icon";
 import linkSvg from './assets/link.svg';
+import Footer from "./Footer";
 
 const Content = () => {
 
     const PROJECT_URLS = ['https://github.com/NithinRauj/CollabSQL', 'https://github.com/NithinRauj/rest-client-electron'];
+    const MAIL_URL = 'mailto: raujnithin@gmail.com'
 
     const headerRef = useRef();
     const subHeaderRef = useRef();
@@ -14,6 +16,7 @@ const Content = () => {
     const job2Ref = useRef();
     const project1Ref = useRef();
     const project2Ref = useRef();
+    const contactSectionRef = useRef();
 
     const intersectionCallback = (elements) => {
         elements.forEach((element) => {
@@ -32,21 +35,33 @@ const Content = () => {
                         element.target.classList.remove('translate-x-[150%]')
                     }
                     break;
+                case 'contact-me':
+                    if (element.isIntersecting) {
+                        element.target.classList.remove('max-h-0')
+                        element.target.classList.add('max-h-64')
+                    }
+                    break;
+                default:
             }
         });
     }
 
     const defineScrollObserver = () => {
         const observer = new IntersectionObserver(intersectionCallback, { rootMargin: '0px' });
-        if (headerRef.current && subHeaderRef.current && job1Ref.current && job2Ref.current) {
+        if (headerRef.current && subHeaderRef.current && job1Ref.current && job2Ref.current && project1Ref.current && project2Ref.current && contactSectionRef.current) {
             observer.observe(headerRef.current);
             observer.observe(subHeaderRef.current);
             observer.observe(job1Ref.current);
             observer.observe(job2Ref.current);
             observer.observe(project1Ref.current);
             observer.observe(project2Ref.current);
+            observer.observe(contactSectionRef.current);
         }
         return () => observer.disconnect();
+    }
+
+    const onContact = () => {
+        window.open(MAIL_URL, '_blank');
     }
 
     useEffect(() => {
@@ -116,6 +131,7 @@ const Content = () => {
 
                 </div>
             </div>
+
             <div className="h-screen flex items-center justify-center overflow-x-hidden">
                 <div className="w-1/2">
                     <p className="transition duration-300 text-7xl text-center">What I&apos;ve Built...</p><br />
@@ -158,6 +174,19 @@ const Content = () => {
 
                 </div>
             </div>
+
+            <div className="h-screen flex items-center justify-center overflow-x-hidden">
+                <div ref={contactSectionRef} className="contact-me w-1/2 max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in">
+                    <p className="transition duration-300 text-7xl text-center">Contact Me</p><br />
+                    <div className="flex flex-col justify-center items-center">
+                        <p className='font-extralight'>Get in touch to discuss projects, collaborations, or just to say Hello!</p>
+                        <button onClick={onContact} className="border-2 my-5 p-4 rounded-lg hover:scale-110 transition-transform ease-in">
+                            Get In Touch!
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <Footer />
         </>
     )
 }

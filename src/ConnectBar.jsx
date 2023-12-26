@@ -13,19 +13,19 @@ const ConnectBar = () => {
 
     useEffect(() => {
         if (barRef.current) {
-            barRef.current.classList.remove('-translate-x-[155%]');
+            barRef.current.classList.remove('-translate-x-[160%]');
         }
     }, []);
 
     return (
         <div ref={barRef}
             className='fixed left-5 bottom-9 flex flex-col 
-            justify-between h-36 -translate-x-[155%]
-            transition-transform duration-300 ease-in'
+            justify-between h-36 -translate-x-[160%]
+            transition-transform duration-300 ease-in delay-1000'
         >
-            <Icon icon={emailSvg} url={MAIL_URL} alt='email-icon' className='w-9 h-9 cursor-pointer' />
-            <Icon icon={linkedinSvg} target='_blank' url={LINKEDIN_URL} alt="linkedin-icon" className='w-9 h-9 cursor-pointer' />
-            <Icon icon={githubSvg} target='_blank' url={GITHUB_URL} alt="github-icon" className='w-9 h-9 cursor-pointer' />
+            <Icon icon={emailSvg} url={MAIL_URL} alt='email-icon' className='w-9 h-9 cursor-pointer hover:scale-110 transition-transform ease-in' />
+            <Icon icon={linkedinSvg} target='_blank' url={LINKEDIN_URL} alt="linkedin-icon" className='w-9 h-9 cursor-pointer hover:scale-110 transition-transform ease-in' />
+            <Icon icon={githubSvg} target='_blank' url={GITHUB_URL} alt="github-icon" className='w-9 h-9 cursor-pointer hover:scale-110 transition-transform ease-in' />
         </div>
     )
 }
