@@ -1,9 +1,13 @@
-import Content from "./Content"
+import { Analytics } from '@vercel/analytics/react';
+import Content from "./Content";
 
 function App() {
 
   return (
-    <Content />
+    <>
+      <Content />
+      <Analytics />
+    </>
   )
 }
 
