@@ -9,11 +9,9 @@ const Content = () => {
 
     const headerRef = useRef();
     const subHeaderRef = useRef();
-    const job1Ref = useRef();
-    const job2Ref = useRef();
-    const project1Ref = useRef();
-    const project2Ref = useRef();
     const contactSectionRef = useRef();
+    const jobSectionRef = useRef();
+    const projectSectionRef = useRef();
 
     const intersectionCallback = (elements) => {
         elements.forEach((element) => {
@@ -28,7 +26,7 @@ const Content = () => {
                 case 'height-transition':
                     if (element.isIntersecting) {
                         element.target.classList.remove('max-h-0')
-                        element.target.classList.add('max-h-64')
+                        element.target.classList.add('max-h-full')
                     }
                     break;
                 default:
@@ -38,13 +36,11 @@ const Content = () => {
 
     const defineScrollObserver = () => {
         const observer = new IntersectionObserver(intersectionCallback, { rootMargin: '0px' });
-        if (headerRef.current && subHeaderRef.current && job1Ref.current && job2Ref.current && project1Ref.current && project2Ref.current && contactSectionRef.current) {
+        if (headerRef.current && subHeaderRef.current && projectSectionRef.current && jobSectionRef.current && contactSectionRef.current) {
             observer.observe(headerRef.current);
             observer.observe(subHeaderRef.current);
-            observer.observe(job1Ref.current);
-            observer.observe(job2Ref.current);
-            observer.observe(project1Ref.current);
-            observer.observe(project2Ref.current);
+            observer.observe(jobSectionRef.current);
+            observer.observe(projectSectionRef.current);
             observer.observe(contactSectionRef.current);
         }
         return () => observer.disconnect();
@@ -81,36 +77,24 @@ const Content = () => {
             </div>
 
             <div className="h-screen flex flex-col items-center justify-center overflow-x-hidden my-5">
-                <div className="w-1/2">
+                <div
+                    ref={jobSectionRef}
+                    className="height-transition w-1/2 max-h-0 overflow-hidden transition-[max-height] delay-300 duration-500 ease-in"
+                >
                     <p className="transition duration-300 text-7xl text-center">
                         Where I&apos;ve Worked...
                     </p><br />
-                    <JobCard
-                        ref={job1Ref}
-                        data={jobData[0]}
-                        transitionClass='-translate-x-[150%]'
-                    />
-                    <JobCard
-                        ref={job2Ref}
-                        data={jobData[1]}
-                        transitionClass='translate-x-[150%]'
-                    />
+                    {jobData.map((j, index) => <JobCard key={index} data={jobData[index]} />)}
                 </div>
             </div>
 
             <div className="h-screen flex items-center justify-center overflow-x-hidden">
-                <div className="w-1/2">
+                <div
+                    ref={projectSectionRef}
+                    className="height-transition w-1/2 max-h-0 overflow-hidden transition-[max-height] delay-300 duration-500 ease-in"
+                >
                     <p className="transition duration-300 text-7xl text-center">What I&apos;ve Built...</p><br />
-                    <ProjectCard
-                        data={projectData[0]}
-                        transitionClass='-translate-x-[150%]'
-                        ref={project1Ref}
-                    />
-                    <ProjectCard
-                        data={projectData[1]}
-                        transitionClass='translate-x-[150%]'
-                        ref={project2Ref}
-                    />
+                    {projectData.map((j, index) => <ProjectCard key={index} data={projectData[index]} />)}
                 </div>
             </div>
 
